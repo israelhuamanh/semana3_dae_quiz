@@ -7,10 +7,10 @@
 Desarrollo de Aplicación de Cuestionarios (Quiz) con Django
 
 ## 3. Captura del resultado
-![Captura de la lista de exámenes](path/to/exam_list_capture.png)
-![Captura del detalle de un examen](path/to/exam_detail_capture.png)
-![Captura del formulario de preguntas](path/to/question_form_capture.png)
-![Captura DB](path/to/db_capture.png)
+![Captura de la lista de exámenes](./docs/captura_lista_examenes.png)
+![Captura del detalle de un examen](./docs/captura_detalle_examen.png)
+![Captura del formulario de preguntas](./docs/captura_crear_pregunta.png)
+![Captura DB](./docs/captura_admin.png)
 
 ## 4. Código
 

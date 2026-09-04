@@ -1,0 +1,34 @@
+﻿import markdown
+import sys
+
+with open('ENTREGABLE.md', 'r', encoding='utf-8') as f:
+    text = f.read()
+
+html_body = markdown.markdown(text, extensions=['fenced_code', 'tables'])
+
+html = f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {{ font-family: Arial, sans-serif; line-height: 1.6; margin: 40px; }}
+        h1, h2, h3 {{ color: #333; }}
+        pre {{ background: #f4f4f4; padding: 10px; border-radius: 5px; }}
+        code {{ background: #f4f4f4; padding: 2px 4px; border-radius: 3px; font-family: monospace; }}
+    </style>
+</head>
+<body>
+{html_body}
+</body>
+</html>
+"""
+
+with open('ENTREGABLE.html', 'w', encoding='utf-8') as f:
+    f.write(html)
+
+from xhtml2pdf import pisa
+with open('ENTREGABLE.html', 'r', encoding='utf-8') as f:
+    html = f.read()
+with open('ENTREGABLE.pdf', 'wb') as f:
+    pisa_status = pisa.CreatePDF(html, dest=f)
