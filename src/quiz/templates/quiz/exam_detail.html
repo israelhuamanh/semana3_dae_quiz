@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ exam.title }}{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm mb-4 border-0">
+    <div class="card-body p-4 bg-white rounded">
+        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-3">
+            <h2 class="card-title mb-0 text-primary fw-bold">{{ exam.title }}</h2>
+            <a href="{% url 'quiz:question_create' exam.pk %}" class="btn btn-success shadow-sm">Add Question</a>
+        </div>
+        <p class="card-text lead text-secondary">{{ exam.description }}</p>
+    </div>
+</div>
+
+<h3 class="mb-3 text-secondary">Questions</h3>
+{% for question in questions %}
+    <div class="card shadow-sm mb-4 border-0">
+        <div class="card-header bg-light border-bottom-0 py-3">
+            <h5 class="mb-0 fw-bold">{{ question.order }}. {{ question.text }}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for choice in question.choices.all %}
+                <li class="list-group-item py-3 {% if choice.is_correct %}list-group-item-success bg-opacity-10{% endif %}">
+                    {{ choice.text }} 
+                    {% if choice.is_correct %}
+                        <span class="badge bg-success rounded-pill ms-2 shadow-sm">Correct</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% empty %}
+    <div class="alert alert-info shadow-sm">No questions added yet.</div>
+{% endfor %}
+{% endblock %}
