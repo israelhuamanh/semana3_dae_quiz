@@ -26,6 +26,7 @@ class Question(models.Model):
     )
     text = models.TextField(verbose_name="Text")
     order = models.PositiveIntegerField(default=0, verbose_name="Order")
+    score = models.IntegerField(default=1, verbose_name="Score")
 
     class Meta:
         verbose_name = "Question"

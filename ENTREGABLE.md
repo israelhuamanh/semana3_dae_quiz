@@ -133,3 +133,15 @@ Este proyecto fue desarrollado en colaboración por distintos sub-agentes especi
 - **db_inspector**: Encargado de la auditoría de los datos. Revisó el archivo SQLite (`db.sqlite3`) confirmando la creación exitosa del esquema de base de datos (`quiz_exam`, `quiz_question`, `quiz_choice`) con todas sus restricciones, documentándolo en `db_report.md`.
 - **security_auditor**: Analizó los componentes del proyecto asegurando el cumplimiento de las buenas prácticas de seguridad de la información.
 - **Technical Documentation subagent (Yo)**: Fui el responsable de consolidar la información técnica, inspeccionar el código desarrollado y los reportes de QA y Base de Datos para generar este documento final del Entregable de Laboratorio de manera unificada y en español.
+
+## 8. Justificacin de Tipos de Campo (Paso 11)
+Para el desarrollo de los modelos, se eligieron los siguientes tipos de campo basǭndose en las necesidades de almacenamiento:
+1. **`CharField` en `Exam.title`**: Se eligi porque el ttulo de un examen es un texto corto y fijo (max_length=200). `CharField` es ideal para cadenas de longitud limitada, optimizando el espacio en la base de datos a diferencia de un `TextField`.
+2. **`DateTimeField(auto_now_add=True)` en `Exam.created_at`**: Se utiliz porque necesitamos registrar el momento exacto (fecha y hora) en que se crea el examen. El argumento `auto_now_add=True` automatiza este proceso sin necesidad de que el usuario lo ingrese manualmente.
+3. **`ForeignKey` en `Question.exam`**: Se emple para establecer una relacin de "muchos a uno". Mǧltiples preguntas pertenecen a un solo examen. Ademǭs, `on_delete=models.CASCADE` asegura la integridad referencial (si se borra el examen, se borran sus preguntas).
+4. **`IntegerField` en `Question.score` (Paso 10)**: Se eligi un campo entero porque el puntaje de una pregunta siempre serǭ un nǧmero entero. Este campo fue aadido posteriormente, generando el archivo de migracin `0002_question_score.py` que contiene la instruccin `migrations.AddField` para alterar la tabla en la base de datos.
+
+## Conclusiones:
+1. **Separacin de responsabilidades y buenas prǭcticas**: El uso de Django permite estructurar el proyecto de forma modular. La utilizacin de `FormSets` demostr ser una herramienta poderosa para gestionar mǧltiples opciones de respuesta vinculadas a una sola pregunta en un mismo formulario, asegurando la integridad transaccional.
+2. **Evolucin de esquemas de datos**: El mecanismo de migraciones de Django (`makemigrations` y `migrate`) facilita agregar nuevos atributos (como el campo `score`) en tiempo real sin perder datos, demostrando la escalabilidad de los modelos ORM.
+3. **Calidad y Mantenibilidad**: Escribir pruebas unitarias (`tests.py`) y cumplir con PEP 8 es fundamental para garantizar que reglas de negocio complejas (como tener exactamente una opcin correcta) no se rompan durante el desarrollo o la adicin de nuevos campos.
