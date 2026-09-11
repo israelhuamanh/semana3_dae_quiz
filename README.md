@@ -1,15 +1,15 @@
-﻿# Django Quiz Application
+﻿# Aplicación de Cuestionarios en Django (Quiz App)
 
-A robust web application built with Django that allows users to create and manage quizzes. 
+Una aplicación web robusta construida con Django que permite a los usuarios crear y gestionar exámenes y cuestionarios.
 
-## Features
-- **Exam Management**: Create exams with descriptions and tracking of creation dates.
-- **Question & Choices**: Dynamically add questions to exams.
-- **Strict Validation**: Utilizes Django FormSets with custom validation to ensure that every question has exactly one correct choice.
-- **SQLite Database**: Lightweight and relational database mapping.
-- **Bootstrap 5 UI**: Clean and responsive user interface.
+## Características
+- **Gestión de Exámenes**: Creación de exámenes con descripciones y seguimiento de fechas de creación.
+- **Preguntas y Opciones**: Adición dinámica de preguntas a los exámenes.
+- **Validación Estricta**: Utiliza FormSets de Django con validación personalizada para garantizar que cada pregunta tenga exactamente una opción correcta.
+- **Base de Datos SQLite**: Mapeo relacional y base de datos ligera integrada.
+- **Interfaz Bootstrap 5**: Interfaz de usuario limpia y responsiva.
 
-## Tech Stack
+## Tecnologías Utilizadas
 - Python 3.12+
 - Django 4.2+
 - Bootstrap 5
